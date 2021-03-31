@@ -70,6 +70,9 @@ Route::get('/unverifyseller/{id}', [App\Http\Controllers\AdminController::class,
 Route::get('/verifybuyer/{id}', [App\Http\Controllers\AdminController::class, 'verifybuyer']);
 Route::get('/unverifybuyer/{id}', [App\Http\Controllers\AdminController::class, 'unverifybuyer']);
 
+Route::get('/orders', [App\Http\Controllers\AdminController::class, 'seeorders']);
+Route::post('/successfulorder', [App\Http\Controllers\AdminController::class, 'successfulorder']);
+Route::post('/unsuccessfulorder', [App\Http\Controllers\AdminController::class, 'unsuccessfulorder']);
 
 
 

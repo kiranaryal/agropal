@@ -5,6 +5,10 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\buyerprofile;
 use App\Models\Sellerprofile;
+use App\Models\buy;
+use App\Models\Succesfuldelivery;
+use App\Models\UnSuccesfuldelivery;
+
 
 use Illuminate\Http\Request;
 
@@ -83,5 +87,90 @@ class AdminController extends Controller
 
         ]);
         return redirect('/admin_product_details');
+    }
+
+
+
+
+
+
+
+
+
+    public function seeorders(){
+        $orders= buy::get();
+        
+
+            return view('admin/orders',compact('orders'));
+     
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function successfulorder(Request $request){
+        $buy = buy::where('user_id', $request->user_id)->where('product_id',$request->product_id);
+        $buy->delete();
+       
+$available= Product::where('id',$request->product_id)->pluck('quantity');
+foreach($available as $available)  ///cause available is a fucking array
+ {
+   
+     $left=$available-$request->quantity;
+     
+    
+    Product::where('id',$request->product_id)->update([
+        
+        'quantity'=>$left,
+        ]
+    );
+    Succesfuldelivery::create([
+        
+        'user_id' => $request->user_id,
+        'product_id' => $request->product_id,
+        'quantity' =>$request->quantity,
+        ]);
+        return redirect('/orders');
+    }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function unsuccessfulorder(Request $request){
+$buy =        buy::where('user_id', $request->user_id)->where('product_id',$request->product_id);
+$buy->delete();
+UnSuccesfuldelivery::create([
+
+    'user_id' => $request->user_id,
+    'product_id' => $request->product_id,
+    'quantity' =>$request->quantity,
+]);
+
+        return redirect('/orders');
     }
 }

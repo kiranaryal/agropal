@@ -3,6 +3,9 @@
 @section('content')
 <br><br><br><br><br><br><br><br><br><br>
 
+@if($message)
+{{$message}}
+@endif
 
 @forelse($product as $product)
 <div class="container py-4 my-4 mx-auto d-flex flex-column">
@@ -37,6 +40,8 @@
             <form action="/cart/store" method="POST">
             @csrf
           <input type="hidden" name = "product_id" value="{{$product->id}}">
+          
+
             <div class=""><button>Add to cart </button> </div>
             </form>
           @empty

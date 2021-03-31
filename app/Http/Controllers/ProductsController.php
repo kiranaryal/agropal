@@ -12,8 +12,8 @@ class ProductsController extends Controller
     
 public function show($id){
     $product = Product::where('id',$id)->get();
-
-    return view('productdetails',compact('product'));
+    $message = NULL;
+    return view('productdetails',compact('product','message'));
 }
 
 public function destroy(Request $request){

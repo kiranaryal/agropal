@@ -43,8 +43,9 @@
         <a href="/dashboard">Home</a> <br>
         <a href="/admin_user_details">User Details</a> <br>
         <a href="/admin_product_details">Product Details</a> <br>
-        <a href="/reg_buyer">Registered Seller</a> <br>
-        <a href="/reg_seller">Regstered Seller</a><br>
+        <a href="/reg_buyer">Register buyer</a> <br>
+        <a href="/reg_seller">Regster Seller</a><br>
+        <a href="/orders">orders</a><br>
 
     </div>
     <div id="main">

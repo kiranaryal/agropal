@@ -8,9 +8,12 @@
 <form action="/buynow" method="POST" >
 @csrf
 <input type="hidden" value="{{$product->id}}" name="product">
+<input type="number" name="quantity" required>
+
 
 <button type="submit">buy</button></form>
 {{ $product->id}}
+{{ $product->quantity}}
 
 @endforeach
 <div class="cart_section">
